@@ -768,7 +768,231 @@ int main(){
 - `else`和它上面的最近的同级别的`if`配对
 
 # 循环结构
-TODO
+
+循环有三种基本的循环：
+ 
+ - for循环
+ - while循环
+ - do while循环
+
+这三种循环本质上一样的，可以互相转换。
+
+## for循环
+
+语法如下
+
+```c++
+for( s1 : s2 : s3) { 
+    block;
+}
+```
+- s1,s2,s3 分别表示 语句1，语句2，语句3
+- block 表示多条语句
+
+它的执行过程如下
+
+```plaintext
+            +------+
+            |  s1  | 执行一次
+            +------+
+               |
+               v
+            +------+         +------+  
+      +---- |  s2  | <-------|  s3  | <---+
+      |     +------+         +------+     |
+      |        | YES                      |
+      |        v                          |
+      |    +--------+                     |
+      |    |  block |---------------------+
+      |    +--------+
+      +-------+
+              |
+              v
+          +-------+
+          |  End  |
+          +-------+
+```
+
+例子1 ：输出1到10，然后输出10到1
+
+```c
+#include <bits/stdc++.h> //万能头文件
+using namespace std;
+
+int main(){
+    for(int i=1;i<=10;++i){ //输出1 到 10
+        cout << i << " ";
+    }
+    for(int i=10;i>=1;--i) //这一行没有带括号{}，
+        cout << i << " ";  //for与if 一样默认控制下面的一句话
+    cout << endl;
+
+    return 0;
+}
+
+```
+
+例子2 ：计算1到100的和
+
+```c
+#include <bits/stdc++.h> //万能头文件
+using namespace std;
+
+int main(){
+    int sum = 0; // sum 是英文[求和]的意思
+    for(int i=1;i<=100;++i){ 
+        sum+= i;
+    }
+    cout << sum << endl; // 5050
+    return 0;
+}
+
+```
+
+**特别说明：** for小括号内的三条语句都可以写成空语句，看下面的代码
+
+代码3
+
+```c
+#include <bits/stdc++.h> //万能头文件
+using namespace std;
+
+int main(){
+    int i=1;
+    for( ; i < 10 ; ){
+        cout << i << " ";
+        i = i+2;
+    } // 想一想这个for的输出结果是什么
+    // 这个for的 s1 是空语句 ; 执行这名话相当于什么也什么做
+    // s2 是一个判断条件
+    // s3 是空语句 ; 执行这名话相当于什么也什么做
+    return 0;
+}
+
+```
+
+输出结果是：`1 3 5 7 9 `
+
+代码4
+
+```c
+#include <bits/stdc++.h> //万能头文件
+using namespace std;
+
+int main(){
+    for( ; ; ){
+        cout << "hello" << endl;
+    } // 想一想这个for的输出结果是什么
+    // 这个for的 s1 是空语句 ; 执行这名话相当于什么也什么做
+    // s2 是一个空语句 ; c++ 认为空语句的条件是真
+    // s3 是空语句 ; 执行这名话相当于什么也什么做
+    return 0;
+}
+
+```
+
+输出结果是：无限输出`hello`,可以按`ctrl + c` 强制终止程序
+
+
+## continue 语句
+
+> continue ： 继续，遇到它，跳转到s3去执行
+
+```c
+#include <bits/stdc++.h> //万能头文件
+using namespace std;
+
+int main(){
+    for(int i=1;i<=10;++i){
+        if( i == 5)
+            continue;
+        cout << i << " ";
+    }
+    return 0;
+}
+
+```
+
+输出结果是：`1 2 3 4 6 7 8 9 10 ` 没有5
+
+## break 语句
+
+> break : 打断，遇到它，终止控制break的那个for语句
+
+```c
+#include <bits/stdc++.h> //万能头文件
+using namespace std;
+
+int main(){
+    for(int i=1;i<=10;++i){
+        if( i == 5)
+            break;
+        cout << i << " ";
+    }
+    return 0;
+}
+
+```
+
+输出结果是：`1 2 3 4 ` 没有5和后面的数字
+
+## 嵌套循环
+
+```c
+#include <bits/stdc++.h> //万能头文件
+using namespace std;
+
+int main(){
+    for(int i=1;i<=3;++i){
+        cout << i << ": ";
+        for(int j=1;j<=i;++j){
+            cout << j << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+
+```
+
+输出结果如下：
+
+```plaintext
+1: 1 
+2: 1 2 
+3: 1 2 3 
+```
+
+例子：输出9x9乘法表
+
+```c
+#include <bits/stdc++.h> //万能头文件
+using namespace std;
+
+int main(){
+    for(int i=1;i<=9;++i){
+        for(int j=1;j<=i;++j){
+            cout << i << "x" << j << "=" << i*j << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
+
+```
+
+
+```plaintext
+1x1=1 
+2x1=2 2x2=4 
+3x1=3 3x2=6 3x3=9 
+4x1=4 4x2=8 4x3=12 4x4=16 
+5x1=5 5x2=10 5x3=15 5x4=20 5x5=25 
+6x1=6 6x2=12 6x3=18 6x4=24 6x5=30 6x6=36 
+7x1=7 7x2=14 7x3=21 7x4=28 7x5=35 7x6=42 7x7=49 
+8x1=8 8x2=16 8x3=24 8x4=32 8x5=40 8x6=48 8x7=56 8x8=64 
+9x1=9 9x2=18 9x3=27 9x4=36 9x5=45 9x6=54 9x7=63 9x8=72 9x9=81 
+```
 
 # 数组
 TODO
