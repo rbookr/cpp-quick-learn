@@ -12,8 +12,7 @@ log = console.log
 
 const LoadMD = (file_path)=>{
   return new Promise( (res,rej )=>{
-    ejs.renderFile(file_path,{},{},(err,str)=>{
-      if( err ){
+    ejs.renderFile(file_path,{},{},(err,str)=>{ if( err ){
         log("err:")
         rej(err)
         return;
@@ -52,7 +51,9 @@ function make_pdf(){
 async function main(){
   //let mds = []
   log("Start----")
-  let files = fs.readdirSync("./").filter( name => name.endWith(".md") && name[0] !='_' ).sort((a,b) => {
+  let files = fs.readdirSync("./").filter( name => name.endWith(".md") && name[0] !='_' )
+    .filter(name => name[0] >='0' && name[0] <='9')
+    .sort((a,b) => {
     let an = parseInt(a.split("-")[0]);
     let bn = parseInt(b.split("-")[0]);
     return an - bn;

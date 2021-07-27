@@ -6,6 +6,6 @@ int main(){
     for(int i=1;i<=100;++i){ 
         sum+= i;
     }
-    cout << sum << endl; // 5050
+    printf("%d\n",sum); // 5050
     return 0;
 }

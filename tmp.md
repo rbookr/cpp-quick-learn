@@ -15,16 +15,15 @@ titlepage-background: "backgrounds/background1.pdf"
 # 第一个程序
 
 ```c++
-#include <iostream>
-using namespace std;
+#include <cstdio>
 int main(){
-    cout << "Hello World!" << endl;
+    printf("Hello World!");
     return 0;
 }
 
 ```
- - `iostream`是头文件，是`input output stream`的缩写。
- - 包含`iostream`头文件后，就可以使用`cout`，`cin`这两个对象了。
+ - `cstdio`是头文件，是`c stand input output`的缩写。
+ - 包含`cstdio`头文件后，就可以使用`printf`，`scanf`这两个函数了。
  - `main`是**主要**的意思，程序从`main`的第一句代码开始执行。
  - `;`号表示一句代码的结束，`;`前面可以什么也不写，表示空语句
 
@@ -63,7 +62,7 @@ int main(){
 
 ```
 
-# 数字类型
+# 数据类型
 
 $C++$有以下5种基本数据类型
 
@@ -78,34 +77,9 @@ $C++$有以下5种基本数据类型
 # 输入输出
 
 c++是c语言的进化，所以可以使用c语言的输入输出函数`scanf`，`printf`，当然c++也有它特有的输入输出方法`cin`，`cout`。
-下面我看一下特有的输入输出
 
-```c++
-#include <iostream>
-int main(){
-    int a; //定义一个整型变量a
-    std::cin >> a; // 输入一个数字
-    // 把这个数字输出
-    std::cout << a << std::endl;
-    return 0;
-}
+因为我们学习的目的是为了信息竞赛，且经过笔者多年经验，我们具体需要学习的是`scanf`和`printf`,`cin,cout`只作了解就可以了。
 
-```
-
-如果不想每一次都在`cin,cout`之前使用`std::`这个命名空间，也可以按下面的方式来写
-
-```c++
-#include <iostream>
-using namespace std;
-int main(){
-    int a; //定义一个整型变量a
-    cin >> a; // 输入一个数字
-    // 把这个数字输出
-    cout << a << endl;
-    return 0;
-}
-
-```
 
 下面的我们来具体看一下如何输入输出数据
 
@@ -124,72 +98,6 @@ c风格读取代码：
  - 输入输出时要指定标记（`%d %f %lf`）
  - 速度快
  - 读取数字的时候会略过不可见字符（空格，换行符）
-
-```c++
-#include <cstdio>
-
-int main(){
-    int a;
-    scanf("%d",&a);
-    printf("wo du qu shu zi shi %d\n",a); //我读取的数字是
-
-    //读取的浮点数
-    float b;
-    scanf("%f",&b);
-    printf("wo du qu float shu zi shi %f\n",b); //我读取的float数字是
-
-    //读取的浮点数
-    double c;
-    scanf("%lf",&c);
-    printf("wo du qu double shu zi shi %lf\n",c); //我读取的float数字是
-
-    //同时读取三个数字
-    int d1,d2,d3;
-    scanf("%d%d%d",&d1,&d2,&d3);
-    printf("%d %d %d",d1,d2,d3);
-
-    return 0;
-}
-
-```
-
-c++风格读取代码：
-
- - 输入输出时不要指定标记，根据变量的类型自动判定
- - 速度相对较慢
- - 读取数字的时候会略过不可见字符（空格，换行符）
- - 在对一些格式化的输出的时间不太好用，例如输出：`number is %8d \n\n,hello world`
-
-```c++
-#include <iostream>
-using namespace std;
-
-int main(){
-    int a;
-    cin >> a;
-    cout << "wo du qu shu zi shi " << a << endl;
-
-    //读取的浮点数
-    float b;
-    cin >> b;
-    cout << "wo du qu float shu zi shi " << b << endl;
-
-    //读取的浮点数
-    double c;
-    cin >> c ;
-    //我读取的float数字是
-    cout << "wo du qu double shu zi shi " << c << endl;
-
-    //同时读取三个数字
-    int d1,d2,d3;
-    cin >> d1 >> d2 >> d3;
-    cout << d1 <<" "<< d2 <<" "<< d3 << endl;
-    // 快捷键 co d1 d2 d3[tab]
-
-    return 0;
-}
-
-```
 
 
 ## 读取字符
@@ -235,7 +143,68 @@ int main(){
 
 ```
 
-## 格式化输出
+下面我看一下特有的输入输出
+
+```c++
+#include <iostream>
+int main(){
+    int a; //定义一个整型变量a
+    std::cin >> a; // 输入一个数字
+    // 把这个数字输出
+    std::cout << a << std::endl;
+    return 0;
+}
+
+```
+
+如果不想每一次都在`cin,cout`之前使用`std::`这个命名空间，也可以按下面的方式来写
+
+```c++
+#include <iostream>
+using namespace std;
+int main(){
+    int a; //定义一个整型变量a
+    cin >> a; // 输入一个数字
+    // 把这个数字输出
+    cout << a << endl;
+    return 0;
+}
+
+```
+## printf格式化输出
+
+ - 进制相关
+    - %x 16进制显示
+    - %o 8进制显示
+    - %d 10进制显示
+ - 精度相关
+    - %.8lf double类型浮点数，保留8位小数，四舍五入
+    - %.8f  float类型浮点数，保留8位小数，四舍五入
+ - 宽度相关
+    - `printf("%4d",12)`, 4个宽度输出,右对齐
+    - `printf("%04d",12)`, 4个宽度输出,右对齐，用0补全
+    - `printf("%-4d",12)`, 4个宽度输出,左对齐
+
+```c++
+#include <bits/stdc++.h>
+
+int main(){
+    int a = 7 ,b = 12,c = 16;
+    printf("%d %d %d\n",a,b,c); //输出 "7 12 16" 然后换行
+    printf("%x %x %x\n",a,b,c); //16进制输出
+    printf("%o %o %o\n",a,b,c); //8进制输出
+
+    printf("%5d\n",5); //5个位置，用来输出5
+    printf("%10d\n",5);//10个位置，用来输出5，右对齐
+    printf("%-10d\n",5);//10个位置，用来输出5，左对齐
+    printf("%010d\n",5);
+
+    return 0;
+}
+
+```
+
+## cout格式化输出
 
  - 进制相关
     - `std::hex` 16进制显示
@@ -369,23 +338,23 @@ int main()
    int c;
 
    c = a + b;
-   cout << "Line 1 - c 的值是 " << c << endl ;
+   printf("Line 1 - c 的值是 %d\n",c);
    c = a - b;
-   cout << "Line 2 - c 的值是 " << c << endl ;
+   printf("Line 2 - c 的值是 %d\n",c);
    c = a * b;
-   cout << "Line 3 - c 的值是 " << c << endl ;
+   printf("Line 3 - c 的值是 %d\n",c);
    c = a / b;
-   cout << "Line 4 - c 的值是 " << c << endl ;
+   printf("Line 4 - c 的值是 %d\n",c);
    c = a % b;
-   cout << "Line 5 - c 的值是 " << c << endl ;
+   printf("Line 5 - c 的值是 %d\n",c);
 
    int d = 10;   //  测试自增、自减
    c = d++;
-   cout << "Line 6 - c 的值是 " << c << endl ;
+   printf("Line 6 - c 的值是 %d\n",c);
 
    d = 10;    // 重新赋值
    c = d--;
-   cout << "Line 7 - c 的值是 " << c << endl ;
+   printf("Line 7 - c 的值是 %d\n",c);
    return 0;
 }
 
@@ -425,42 +394,42 @@ int main()
 {
    int a = 21;
    int b = 10;
-   int c ;
+   int c;
 
    if( a == b )
    {
-      cout << "Line 1 - a 等于 b" << endl ;
+      printf("Line 1 - a 等于 b");
    }
    else
    {
-      cout << "Line 1 - a 不等于 b" << endl ;
+      printf("Line 1 - a 不等于 b");
    }
    if ( a < b )
    {
-      cout << "Line 2 - a 小于 b" << endl ;
+      printf("Line 2 - a 小于 b");
    }
    else
    {
-      cout << "Line 2 - a 不小于 b" << endl ;
+      printf("Line 2 - a 不小于 b");
    }
    if ( a > b )
    {
-      cout << "Line 3 - a 大于 b" << endl ;
+      printf("Line 3 - a 大于 b");
    }
    else
    {
-      cout << "Line 3 - a 不大于 b" << endl ;
+      printf("Line 3 - a 不大于 b");
    }
    /* 改变 a 和 b 的值 */
    a = 5;
    b = 20;
    if ( a <= b )
    {
-      cout << "Line 4 - a 小于或等于 b" << endl ;
+      printf("Line 4 - a 小于或等于 b");
    }
    if ( b >= a )
    {
-      cout << "Line 5 - b 大于或等于 a" << endl ;
+      printf("Line 5 - b 大于或等于 a");
    }
    return 0;
 }
@@ -504,30 +473,30 @@ int main()
 {
    int a = 5;
    int b = 20;
-   int c ;
+   int c;
 
    if ( a && b )
    {
-      cout << "Line 1 - 条件为真"<< endl ;
+      printf("Line 1 - 条件为真");
    }
    if ( a || b )
    {
-      cout << "Line 2 - 条件为真"<< endl ;
+      printf("Line 2 - 条件为真");
    }
    /* 改变 a 和 b 的值 */
    a = 0;
    b = 10;
    if ( a && b )
    {
-      cout << "Line 3 - 条件为真"<< endl ;
+      printf("Line 3 - 条件为真");
    }
    else
    {
-      cout << "Line 4 - 条件不为真"<< endl ;
+      printf("Line 4 - 条件不为真");
    }
    if ( !(a && b) )
    {
-      cout << "Line 5 - 条件为真"<< endl ;
+      printf("Line 5 - 条件为真");
    }
    return 0;
 }
@@ -624,9 +593,9 @@ typedef long long ll;
 
 int main(){
     int a; //定义一个变量
-    cin >> a;//输入一个值
+    scanf("%d",&a);//输入一个值
     if( a >= 60)    //if只能控制后面的一句话
-        cout << "YES" << endl;
+        printf("YES\n");
     return 0;
 }
 
@@ -667,11 +636,11 @@ typedef long long ll;
 
 int main(){
     int a; //定义一个变量
-    cin >> a;//输入一个值
+    scanf("%d",&a); //输入一个值
     if( a >= 60)    //if只能控制后面的一句话
-        cout << "YES" << endl;
+        printf("YES\n");
     else
-        cout << "NO" << endl;
+        printf("NO\n");
     return 0;
 }
 
@@ -695,7 +664,7 @@ typedef long long ll;
 
 int main(){
     int a; //定义一个变量
-    cin >> a;//输入一个值
+    scanf("%d",&a); //输入一个值
     if( a >= 60)    //if只能控制后面的一句话
         //下面的if else 形成一句话 ，被上面的if(a>=60) 控制
         if ( a>= 70)
@@ -721,7 +690,7 @@ typedef long long ll;
 
 int main(){
     int a; //定义一个变量
-    cin >> a;//输入一个值
+    scanf("%d",&a); //输入一个值
     if( a >= 60)    //if只能控制后面的一句话
         //下面的if else 形成一句话 ，被上面的if(a>=60) 控制
         if ( a>= 70)
@@ -821,11 +790,11 @@ using namespace std;
 
 int main(){
     for(int i=1;i<=10;++i){ //输出1 到 10
-        cout << i << " ";
+        printf("%d ",i);
     }
     for(int i=10;i>=1;--i) //这一行没有带括号{}，
-        cout << i << " ";  //for与if 一样默认控制下面的一句话
-    cout << endl;
+        printf("%d ",i); //for与if 一样默认控制下面的一句话
+    printf("\n"); //换行
 
     return 0;
 }
@@ -843,7 +812,7 @@ int main(){
     for(int i=1;i<=100;++i){ 
         sum+= i;
     }
-    cout << sum << endl; // 5050
+    printf("%d\n",sum); // 5050
     return 0;
 }
 
@@ -860,7 +829,7 @@ using namespace std;
 int main(){
     int i=1;
     for( ; i < 10 ; ){
-        cout << i << " ";
+        printf("%d ",i);
         i = i+2;
     } // 想一想这个for的输出结果是什么
     // 这个for的 s1 是空语句 ; 执行这名话相当于什么也什么做
@@ -881,7 +850,7 @@ using namespace std;
 
 int main(){
     for( ; ; ){
-        cout << "hello" << endl;
+        printf("hello\n");
     } // 想一想这个for的输出结果是什么
     // 这个for的 s1 是空语句 ; 执行这名话相当于什么也什么做
     // s2 是一个空语句 ; c++ 认为空语句的条件是真
@@ -906,7 +875,7 @@ int main(){
     for(int i=1;i<=10;++i){
         if( i == 5)
             continue;
-        cout << i << " ";
+        printf("%d ",i);
     }
     return 0;
 }
@@ -927,7 +896,7 @@ int main(){
     for(int i=1;i<=10;++i){
         if( i == 5)
             break;
-        cout << i << " ";
+        printf("%d ",i);
     }
     return 0;
 }
@@ -945,10 +914,12 @@ using namespace std;
 int main(){
     for(int i=1;i<=3;++i){
         cout << i << ": ";
+        printf("%d: ",i);
         for(int j=1;j<=i;++j){
             cout << j << " ";
+            printf("%d ",j);
         }
-        cout << endl;
+        printf("\n");
     }
     return 0;
 }
@@ -972,9 +943,9 @@ using namespace std;
 int main(){
     for(int i=1;i<=9;++i){
         for(int j=1;j<=i;++j){
-            cout << i << "x" << j << "=" << i*j << " ";
+            printf("%dx%d=%d ",i,j,i*j);
         }
-        cout << endl;
+        printf("\n");
     }
     return 0;
 }
@@ -995,7 +966,91 @@ int main(){
 ```
 
 # 数组
+
+## 引言
+
+如果你需要写一个程序记录3个人的成绩
+
+```c++
+int a,b,c;
+scanf("%d%d%d",&a,&b,&c);
+```
+
+那如果你需要记录1000个人的成绩呢？就不能用定义一个一个变量的方式了，要使用数组
+
+```c++
+int a[1000];
+for(int i = 0; i<= 999 ;i++)
+    scanf("%d",&a[i]);
+```
+
+### 1. 什么是数组？
+
+数组：一组数字
+### 2.  如何定义数组` 数组类型 数组名[数组大小]`
+
+```c++
+// 1. 直接定义一个数组，名字叫a，有100个元素
+int a[100];             
+
+// 2.定义时直接初始化，有3个元素，3个元素分别为 1 2 3
+int abc[3] = {1,2,3};   
+
+// 3.部分初始化 其中第一个元素为10 其它元素为0
+int d[3] = {10};   
+
+// 3. 不直接指定数组的大小，数组的大小由初始化列表的元素个数来决定
+// foo大小为5
+int foo[]  = {1,2,3,4,5}; 
+
+// 4 定义了一个char数组
+char bar[] = {'a','1','2'};
+```
+### 3.  数组定义后如何使用
+
+ - 数组的**下标**从0开始，如
+   - `int a[3]`有三个元素,分别是`a[0],a[1],a[2]`
+ - 使用下标访问数组里的一个元素，就像普通的变量一样
+   ```c++
+   int a[3];        //定义
+   scanf("%d",&a[1]);     //输入
+   a[0] = 1;        //赋值
+   a[0] = a[1] + a[2]; //运算
+   ```
+
+```c++
+#include <iostream>
+using namespace std;
+
+int main(){
+    int a[5];
+    for(int i=0;i<=4;++i){ //由键盘输入5个数字
+        scanf("%d",&a[i]); // 存到数组里
+    }
+
+    printf("array is : ");
+    for(int i=0;i<=4;++i){ 
+        printf("%d ",a[i]); //输出每个元素并空一格
+    }
+
+    return 0;
+}
+
+```
+
+### 4. 一个小题目 : 猴子选大王
+
 TODO
+
+### 5. 总结与注意事项
+
+ - 定义数组时，必须知道数组的确定大小，也就是说要用常量表达式，`int a[常量表达式]`
+   - `int n;int a[n];` 错，因为`n`是变量
+ - 定义数组里可以直接初始化`int a[3] = {1,2,3}`
+ - 定义数组里可以通过初始化来指明数组大小`int a[] = {1,2,3}`
+ - 数组的下标从0开始，`int a[3]`,共3个元素，第一个`a[0]`,最后一个`a[2]`
+ - 通过数组的下标来访问元素
+
 
 # 字符串
 TODO

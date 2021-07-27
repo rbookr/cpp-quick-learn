@@ -4,10 +4,10 @@ typedef long long ll;
 
 int main(){
     int a; //定义一个变量
-    cin >> a;//输入一个值
+    scanf("%d",&a); //输入一个值
     if( a >= 60)    //if只能控制后面的一句话
-        cout << "YES" << endl;
+        printf("YES\n");
     else
-        cout << "NO" << endl;
+        printf("NO\n");
     return 0;
 }

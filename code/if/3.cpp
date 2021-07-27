@@ -4,7 +4,7 @@ typedef long long ll;
 
 int main(){
     int a; //定义一个变量
-    cin >> a;//输入一个值
+    scanf("%d",&a); //输入一个值
     if( a >= 60)    //if只能控制后面的一句话
         //下面的if else 形成一句话 ，被上面的if(a>=60) 控制
         if ( a>= 70)

@@ -11,4 +11,4 @@ pandoc \
 --markdown-headings=setext \
 --toc \
 --toc-depth=1 \
-tmp.md -o out.pdf
+tmp.md -o c++快速入门.pdf
