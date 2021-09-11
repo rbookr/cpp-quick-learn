@@ -51,13 +51,34 @@ function make_pdf(){
 async function main(){
   //let mds = []
   log("Start----")
-  let files = fs.readdirSync("./").filter( name => name.endWith(".md") && name[0] !='_' )
-    .filter(name => name[0] >='0' && name[0] <='9')
-    .sort((a,b) => {
-    let an = parseInt(a.split("-")[0]);
-    let bn = parseInt(b.split("-")[0]);
-    return an - bn;
-  })
+  /*
+   *let files = fs.readdirSync("./").filter( name => name.endWith(".md") && name[0] !='_' )
+   *  .filter(name => name[0] >='0' && name[0] <='9')
+   *  .sort((a,b) => {
+   *  let an = parseInt(a.split("-")[0]);
+   *  let bn = parseInt(b.split("-")[0]);
+   *  return an - bn;
+   *})
+   */
+
+  let files = [
+  '0-head.md',
+  '1-第一个程序.md',
+  '1-第一个程序-cstyle.md',
+  '2-注释.md',
+  '3-数据类型.md',
+  '4-输入输出-cppStyle.md',
+  '4-输入输出.md',
+  '5-变量.md',
+  '6-运算符.md',
+  '7-控制结构.md',
+  '8-循环结构.md',
+  '9-数组.md',
+  '10-字符串.md',
+  '11-函数.md',
+  '12-递归.md'
+  ]
+
   log(files)
   let mds = (await Promise.all( files.map( LoadMD ))).join("\n")
   //outtmp = artile_head() + mds
