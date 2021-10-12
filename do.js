@@ -74,7 +74,8 @@ async function main(){
   '9-数组.md',
   '10-字符串.md',
   '11-函数.md',
-  '12-递归.md'
+  '12-递归.md',
+  '13-总结.md'
   ]
 
   log(files)
